@@ -15,11 +15,12 @@ COPY        . /tmp
 RUN         apt-get update && \
             apt-get install --assume-yes \
                 imagemagick \
+                python3 \
                 vim \
                 wget \
                 xdg-utils \
-                xz-utils \
-                xvfb && \
+                xvfb \
+                xz-utils && \
             apt-get clean
 
 # Create user and group
