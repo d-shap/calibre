@@ -14,8 +14,12 @@ COPY        . /tmp
 # Install packages
 RUN         apt-get update && \
             apt-get install --assume-yes \
+                imagemagick \
                 vim \
-                wget && \
+                wget \
+                xdg-utils \
+                xz-utils \
+                xvfb && \
             apt-get clean
 
 # Create user and group
