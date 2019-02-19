@@ -14,6 +14,7 @@ COPY        . /tmp
 # Install packages
 RUN         apt-get update && \
             apt-get install --assume-yes \
+                gcc \
                 imagemagick \
                 python3 \
                 vim \
