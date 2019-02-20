@@ -1,5 +1,5 @@
 #!/bin/bash
 trap /calibre/scripts/shutdown SIGHUP SIGINT SIGTERM TERM
 
-startServerCmd="calibre-server --port $RUN_PORT --enable-auth --disable-local-write --disable-use-sendfile"
+startServerCmd="calibre-server --port $RUN_PORT --enable-auth --disable-local-write --disable-use-sendfile /calibre/data"
 $startServerCmd
