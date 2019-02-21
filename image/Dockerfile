@@ -42,10 +42,10 @@ RUN         cd /tmp && \
             wget -nv -O- $CALIBRE_DOWNLOAD_URL | sh /dev/stdin
 
 # Configure helper scripts
-RUN         mv /tmp/backup /calibre/scripts && \
-            mv /tmp/restore /calibre/scripts && \
-            mv /tmp/startup /calibre/scripts && \
+RUN         mv /tmp/startup /calibre/scripts && \
             mv /tmp/shutdown /calibre/scripts && \
+            mv /tmp/backup /calibre/scripts && \
+            mv /tmp/restore /calibre/scripts && \
             chmod a+x /calibre/scripts/*
 
 USER        $RUN_USER
