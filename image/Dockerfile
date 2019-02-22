@@ -43,7 +43,7 @@ RUN         cd /tmp && \
             xvfb-run calibredb add ./sample.epub --library-path /calibre/data && \
             xvfb-run calibredb remove 1 --library-path /calibre/data && \
             rm ./sample.epub && \
-            mv /calibre/data/metadata.db /calibre/data
+            mv /calibre/data/metadata.db /calibre
 
 # Configure helper scripts
 RUN         mv /tmp/startup /calibre/scripts && \
