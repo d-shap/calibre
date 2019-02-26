@@ -8,6 +8,7 @@ ENV         DEBIAN_FRONTEND noninteractive
 ENV         RUN_USER calibre
 ENV         RUN_GROUP calibre
 ENV         RUN_PORT 8005
+ENV         CALIBRE_CONFIG_DIRECTORY /calibre/config
 ENV         CALIBRE_DOWNLOAD_URL https://download.calibre-ebook.com/linux-installer.sh
 
 COPY        . /tmp
@@ -29,6 +30,7 @@ RUN         groupadd -g $hostgid $RUN_GROUP && \
 
 # Create folders for calibre
 RUN         mkdir /calibre && \
+            mkdir /calibre/config && \
             mkdir /calibre/data && \
             mkdir /calibre/scripts && \
             mkdir /calibre/logs && \
