@@ -18,7 +18,7 @@ do
         chown -R $RUN_USER:$RUN_GROUP "$LIBRARY_PATH"
     fi
     if [ ! -f "$LIBRARY_PATH/metadata.db" ]; then
-        cp /calibre/data/metadata.db "$LIBRARY_PATH"
+        cp /calibre/metadata.db "$LIBRARY_PATH"
     fi
     LIBRARY_PATHS="$LIBRARY_PATHS $LIBRARY_PATH"
 done
