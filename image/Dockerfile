@@ -40,9 +40,9 @@ RUN         mkdir /calibre && \
 # Configure calibre
 RUN         cd /tmp && \
             wget -nv -O- $CALIBRE_DOWNLOAD_URL | sh /dev/stdin && \
-            calibredb add ./sample.epub --library-path /calibre/data && \
+            calibredb add ./sample.txt --library-path /calibre/data && \
             calibredb remove 1 --permanent --library-path /calibre/data && \
-            rm ./sample.epub && \
+            rm ./sample.txt && \
             mv /calibre/data/metadata.db /calibre
 
 # Configure helper scripts
