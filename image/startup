@@ -1,5 +1,25 @@
 #!/bin/bash
+if [ "$LIBRARIES" == "" ];
+then
+    exit 1
+fi
+
+OLD_IFS="$IFS"
+IFS=":"
+LIBRARIES_ARRAY=($LIBRARIES)
+IFS="$OLD_IFS"
+
+LIBRARY_PATHS=""
+for LIBRARY in "${LIBRARIES_ARRAY[@]}"
+do
+    LIBRARY_PATH = "/calibre/data/$LIBRARY"
+    if [ ! -f "$LIBRARY_PATH/metadata.db" ]; then
+        cp /calibre/data/metadata.db $LIBRARY_PATH
+    fi
+    LIBRARY_PATHS="$LIBRARY_PATHS $LIBRARY_PATH"
+done
+
 trap /calibre/scripts/shutdown SIGHUP SIGINT SIGTERM TERM
 
-startServerCmd="calibre-server --port $RUN_PORT --enable-auth --disable-local-write --disable-use-sendfile /calibre/data"
+startServerCmd="calibre-server --port $RUN_PORT --disable-local-write --disable-use-sendfile $LIBRARY_PATHS"
 $startServerCmd
