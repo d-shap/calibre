@@ -20,7 +20,7 @@ do
     if [ ! -f "$LIBRARY_PATH/metadata.db" ]; then
         cp /calibre/metadata.db "$LIBRARY_PATH"
     fi
-    LIBRARY_PATHS="$LIBRARY_PATHS $LIBRARY_PATH"
+    LIBRARY_PATHS="$LIBRARY_PATHS \"$LIBRARY_PATH\""
 done
 
 trap /calibre/scripts/shutdown SIGHUP SIGINT SIGTERM TERM
