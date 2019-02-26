@@ -16,12 +16,10 @@ COPY        . /tmp
 RUN         apt-get update && \
             apt-get install --assume-yes \
                 gcc \
-                imagemagick \
                 python3 \
                 vim \
                 wget \
                 xdg-utils \
-                xvfb \
                 xz-utils && \
             apt-get clean
 
@@ -40,8 +38,8 @@ RUN         mkdir /calibre && \
 # Configure calibre
 RUN         cd /tmp && \
             wget -nv -O- $CALIBRE_DOWNLOAD_URL | sh /dev/stdin && \
-            xvfb-run calibredb add ./sample.epub --library-path /calibre/data && \
-            xvfb-run calibredb remove 1 --library-path /calibre/data && \
+            calibredb add ./sample.epub --library-path /calibre/data && \
+            calibredb remove 1 --permanent --library-path /calibre/data && \
             rm ./sample.epub && \
             mv /calibre/data/metadata.db /calibre
 
@@ -50,7 +48,7 @@ RUN         mv /tmp/startup /calibre/scripts && \
             mv /tmp/shutdown /calibre/scripts && \
             mv /tmp/backup /calibre/scripts && \
             mv /tmp/restore /calibre/scripts && \
-            chmod a+x /calibre/scripts/*
+            chmod 755 /calibre/scripts/*
 
 USER        $RUN_USER
 
