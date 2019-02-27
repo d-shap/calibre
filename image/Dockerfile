@@ -42,7 +42,7 @@ RUN         mkdir /calibre && \
 RUN         cd /tmp && \
             mkdir /opt/calibre && \
             wget -O $CALIBRE_DOWNLOAD_NAME.tar.gz $CALIBRE_DOWNLOAD_URL && \
-            tar xvf ./$CALIBRE_DOWNLOAD_NAME.tar.gz -C /opt/calibre && \
+            tar xzf ./$CALIBRE_DOWNLOAD_NAME.tar.gz -C /opt/calibre && \
             rm ./$CALIBRE_DOWNLOAD_NAME.tar.gz && \
             /opt/calibre/calibre_postinstall && \
             calibredb add ./sample.txt --library-path /calibre/data && \
