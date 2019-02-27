@@ -10,6 +10,11 @@ LIBRARIES_ARRAY=($LIBRARIES)
 IFS="$OLD_IFS"
 
 startServerCmd=(calibre-server)
+startServerCmd+=("--pidfile")
+startServerCmd+=("/calibre/process.pid")
+startServerCmd+=("--shutdown-timeout")
+startServerCmd+=("5")
+
 startServerCmd+=("--port")
 startServerCmd+=($RUN_PORT)
 
@@ -27,9 +32,6 @@ startServerCmd+=("--disable-use-sendfile")
 startServerCmd+=("--disable-auth")
 startServerCmd+=("--userdb")
 startServerCmd+=("/calibre/data/users.db")
-
-#startServerCmd+=("--custom-list-template")
-#startServerCmd+=("--displayed-fields")
 
 for LIBRARY in "${LIBRARIES_ARRAY[@]}"
 do
