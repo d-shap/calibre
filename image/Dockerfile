@@ -9,7 +9,8 @@ ENV         RUN_USER calibre
 ENV         RUN_GROUP calibre
 ENV         RUN_PORT 8005
 ENV         CALIBRE_CONFIG_DIRECTORY /calibre/config
-ENV         CALIBRE_DOWNLOAD_URL https://download.calibre-ebook.com/linux-installer.sh
+ENV         CALIBRE_DOWNLOAD_NAME calibre
+ENV         CALIBRE_DOWNLOAD_URL https://download.calibre-ebook.com/3.39.1/calibre-3.39.1-x86_64.txz
 
 COPY        . /tmp
 
@@ -39,7 +40,11 @@ RUN         mkdir /calibre && \
 
 # Configure calibre
 RUN         cd /tmp && \
-            wget -nv -O- $CALIBRE_DOWNLOAD_URL | sh /dev/stdin && \
+            mkdir /opt/calibre && \
+            wget -O $CALIBRE_DOWNLOAD_NAME.tar.gz $CALIBRE_DOWNLOAD_URL && \
+            tar xvf ./$CALIBRE_DOWNLOAD_NAME.tar.gz -C /opt/calibre && \
+            rm ./$CALIBRE_DOWNLOAD_NAME.tar.gz && \
+            /opt/calibre/calibre_postinstall && \
             calibredb add ./sample.txt --library-path /calibre/data && \
             calibredb remove 1 --permanent --library-path /calibre/data && \
             rm ./sample.txt && \
