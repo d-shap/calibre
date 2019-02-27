@@ -9,7 +9,12 @@ IFS=":"
 LIBRARIES_ARRAY=($LIBRARIES)
 IFS="$OLD_IFS"
 
-LIBRARY_PATHS=""
+startServerCmd=(calibre-server)
+startServerCmd+=("--port")
+startServerCmd+=($RUN_PORT)
+startServerCmd+=("--disable-local-write")
+startServerCmd+=("--disable-use-sendfile")
+
 for LIBRARY in "${LIBRARIES_ARRAY[@]}"
 do
     LIBRARY_PATH="/calibre/data/$LIBRARY"
@@ -20,10 +25,9 @@ do
     if [ ! -f "$LIBRARY_PATH/metadata.db" ]; then
         cp /calibre/metadata.db "$LIBRARY_PATH"
     fi
-    LIBRARY_PATHS="$LIBRARY_PATHS \"$LIBRARY_PATH\""
+    startServerCmd+=("$LIBRARY_PATH")
 done
 
 trap /calibre/scripts/shutdown SIGHUP SIGINT SIGTERM TERM
 
-startServerCmd="calibre-server --port $RUN_PORT --disable-local-write --disable-use-sendfile $LIBRARY_PATHS"
-$startServerCmd
+"${startServerCmd[@]}"
