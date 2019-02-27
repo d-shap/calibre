@@ -7,5 +7,6 @@ docker run \
     -v /calibre/data:/calibre/data \
     -v /var/log/calibre:/calibre/logs \
     -v /var/backups/calibre:/calibre/backups \
+    -e LIBRARIES="library" \
     -p 8005:8005 \
         calibre
