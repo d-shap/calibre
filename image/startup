@@ -29,7 +29,12 @@ startServerCmd+=("--disable-local-write")
 startServerCmd+=("--disable-use-bonjour")
 startServerCmd+=("--disable-use-sendfile")
 
-startServerCmd+=("--disable-auth")
+if [ "$WITHAUTH" == "true" ];
+then
+    startServerCmd+=("--enable-auth")
+else
+    startServerCmd+=("--disable-auth")
+fi
 startServerCmd+=("--userdb")
 startServerCmd+=("/calibre/data/users.db")
 
