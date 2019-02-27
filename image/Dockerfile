@@ -40,11 +40,12 @@ RUN         mkdir /calibre && \
 # Configure calibre
 RUN         cd /tmp && \
             wget -nv -O- $CALIBRE_DOWNLOAD_URL | sh /dev/stdin && \
-            chown -R $RUN_USER:$RUN_GROUP /calibre/config && \
             calibredb add ./sample.txt --library-path /calibre/data && \
             calibredb remove 1 --permanent --library-path /calibre/data && \
             rm ./sample.txt && \
-            mv /calibre/data/metadata.db /calibre
+            mv /calibre/data/metadata.db /calibre && \
+            chown -R $RUN_USER:$RUN_GROUP /calibre/config && \
+            chown $RUN_USER:$RUN_GROUP /calibre/metadata.db
 
 # Configure helper scripts
 RUN         mv /tmp/startup /calibre/scripts && \
