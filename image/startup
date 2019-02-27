@@ -12,8 +12,22 @@ IFS="$OLD_IFS"
 startServerCmd=(calibre-server)
 startServerCmd+=("--port")
 startServerCmd+=($RUN_PORT)
+
+startServerCmd+=("--access-log")
+startServerCmd+=("/calibre/logs/access")
+startServerCmd+=("--log")
+startServerCmd+=("/calibre/logs/log")
+startServerCmd+=("--max-log-size")
+startServerCmd+=("10")
+
 startServerCmd+=("--disable-local-write")
+startServerCmd+=("--disable-use-bonjour")
 startServerCmd+=("--disable-use-sendfile")
+
+startServerCmd+=("--disable-auth")
+
+#startServerCmd+=("--custom-list-template")
+#startServerCmd+=("--displayed-fields")
 
 for LIBRARY in "${LIBRARIES_ARRAY[@]}"
 do
