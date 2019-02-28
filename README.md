@@ -130,6 +130,11 @@ sudo service calibre restart
 sudo service calibre (start|stop|status|restart)
 ```
 
+### User management
+```
+sudo clutil manageusers
+```
+
 ### Create backup
 ```
 sudo clutil backup <filename>
