@@ -1,1 +1,11 @@
 #!/bin/bash
+if [ "$1" != "" ];
+then
+    FILE="/calibre/backups/$1.tar.gz"
+
+    if [ -e "$FILE" ];
+    then
+        cd /calibre
+        tar -xzf $FILE data
+    fi
+fi
