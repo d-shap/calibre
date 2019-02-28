@@ -8,5 +8,6 @@ docker run \
     -v /var/log/calibre:/calibre/logs \
     -v /var/backups/calibre:/calibre/backups \
     -e LIBRARIES="library" \
+    -e WITHAUTH="true" \
     -p 8005:8005 \
         calibre
