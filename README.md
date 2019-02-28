@@ -43,5 +43,86 @@ sudo ./build calibre
 
 Proceed to configuration.
 
+### Configuration
+Create folders for calibre files:
+```
+sudo mkdir /calibre
+```
+```
+sudo mkdir /calibre/data
+```
+
+Create folder for logs:
+```
+sudo mkdir /var/log/calibre
+```
+
+Create folder for backups:
+```
+sudo mkdir /var/backups/calibre
+```
+
+Grant permit to all folders:
+```
+sudo chown -R calibre:calibre /calibre
+```
+```
+sudo chown calibre:calibre /var/log/calibre
+```
+```
+sudo chown calibre:calibre /var/backups/calibre
+```
+
+Copy **etc/init.d/calibre** to **/etc/init.d** folder:
+```
+sudo cp ./etc/init.d/calibre /etc/init.d
+```
+
+Copy **usr/sbin/calibre** to **/usr/sbin** folder:
+```
+sudo cp ./usr/sbin/calibre /usr/sbin
+```
+
+Copy **usr/bin/clutil** to **/usr/bin** folder:
+```
+sudo cp ./usr/bin/clutil /usr/bin
+```
+
+Make all files executable:
+```
+sudo chmod a+x /etc/init.d/calibre
+```
+```
+sudo chmod a+x /usr/sbin/calibre
+```
+```
+sudo chmod a+x /usr/bin/clutil
+```
+
+Register service:
+```
+sudo update-rc.d calibre defaults
+```
+
+Specify library name in **/usr/sbin/calibre** file:
+```
+docker run ... -e LIBRARIES="<library_name>" ...
+```
+
+Start calibre service:
+```
+sudo service calibre start
+```
+
+Create user acount:
+```
+sudo clutil manageusers
+```
+
+Restart calibre service:
+```
+sudo service calibre restart
+```
+
 # Donation
 If you find my code useful, you can [bye me a coffee](https://www.paypal.me/dshapovalov)
