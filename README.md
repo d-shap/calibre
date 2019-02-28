@@ -124,5 +124,70 @@ Restart calibre service:
 sudo service calibre restart
 ```
 
+## Management
+### Service management
+```
+sudo service calibre (start|stop|status|restart)
+```
+
+### Create backup
+```
+sudo clutil backup <filename>
+```
+
+Backup file **/var/backups/calibre/&lt;filename&gt;.tar.gz** will be created.
+
+### Restore backup
+```
+sudo clutil restore <filename>
+```
+
+### Command line (bash)
+```
+sudo clutil bash
+```
+
+## Apache mod_proxy configuration
+Book management web server can be located with another web applications.
+For example, mercurial, bugzilla, wiki etc can be run as docker containers on the same host.
+In this case apache server can be used to redirect requests to different docker containers.
+
+Enable apache mod_proxy:
+```
+sudo a2enmod proxy proxy_ajp proxy_html proxy_http rewrite deflate headers proxy_balancer proxy_connect
+```
+
+Configure proxy:
+```
+<VirtualHost *:80>
+
+...
+
+ProxyPreserveHost On
+<Proxy *>
+    Order allow,deny
+    Allow from all
+</Proxy>
+
+...
+
+</VirtualHost>
+```
+
+Copy **./etc/apache2/sites-available/calibre.conf** to **/etc/apache2/sites-available** folder:
+```
+sudo cp ./etc/apache2/sites-available/calibre.conf /etc/apache2/sites-available
+```
+
+Enable apache calibre site:
+```
+sudo a2ensite calibre
+```
+
+Restart apache service:
+```
+sudo service apache2 restart
+```
+
 # Donation
 If you find my code useful, you can [bye me a coffee](https://www.paypal.me/dshapovalov)
