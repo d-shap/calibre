@@ -1,6 +1,14 @@
 # Book management web server
 Docker image for book management web server.
 
+Container runs as non-root user.
+This user owns calibre process and owns calibre libraries.
+
+To run container next volumes should be mapped:
+* folder for calibre libraries
+* log folder
+* backup folder
+
 ## Installation
 ### Installation from docker image
 Pull docker image.
