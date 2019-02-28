@@ -55,6 +55,7 @@ RUN         cd /tmp && \
 # Configure helper scripts
 RUN         mv /tmp/startup /calibre/scripts && \
             mv /tmp/shutdown /calibre/scripts && \
+            mv /tmp/manageusers /calibre/scripts && \
             mv /tmp/backup /calibre/scripts && \
             mv /tmp/restore /calibre/scripts && \
             chmod 755 /calibre/scripts/*
