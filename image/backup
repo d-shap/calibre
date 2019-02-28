@@ -1,1 +1,10 @@
 #!/bin/bash
+if [ "$1" != "" ];
+then
+    TEMPTILE="/calibre/backups/tmp_$1.tar.gz"
+    FILE="/calibre/backups/$1.tar.gz"
+
+    cd /calibre
+    tar -czf $TEMPTILE data
+    mv $TEMPTILE $FILE
+fi
