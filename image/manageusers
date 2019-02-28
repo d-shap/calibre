@@ -1,0 +1,2 @@
+#!/bin/bash
+calibre-server --userdb /calibre/data/users.db --manage-users
