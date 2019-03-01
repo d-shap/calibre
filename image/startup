@@ -1,56 +1,6 @@
 #!/bin/bash
-if [ "$LIBRARIES" == "" ];
-then
-    exit 1
-fi
-
-OLD_IFS="$IFS"
-IFS=":"
-LIBRARIES_ARRAY=($LIBRARIES)
-IFS="$OLD_IFS"
-
-startServerCmd=(calibre-server)
-startServerCmd+=("--pidfile")
-startServerCmd+=("/calibre/process.pid")
-startServerCmd+=("--shutdown-timeout")
-startServerCmd+=("5")
-
-startServerCmd+=("--port")
-startServerCmd+=($RUN_PORT)
-
-startServerCmd+=("--access-log")
-startServerCmd+=("/calibre/logs/access")
-startServerCmd+=("--log")
-startServerCmd+=("/calibre/logs/log")
-startServerCmd+=("--max-log-size")
-startServerCmd+=("10")
-
-startServerCmd+=("--disable-local-write")
-startServerCmd+=("--disable-use-bonjour")
-startServerCmd+=("--disable-use-sendfile")
-
-if [ "$WITHAUTH" == "true" ];
-then
-    startServerCmd+=("--enable-auth")
-else
-    startServerCmd+=("--disable-auth")
-fi
-startServerCmd+=("--userdb")
-startServerCmd+=("/calibre/data/users.db")
-
-for LIBRARY in "${LIBRARIES_ARRAY[@]}"
-do
-    LIBRARY_PATH="/calibre/data/$LIBRARY"
-    if [ ! -d "$LIBRARY_PATH" ]; then
-        mkdir "$LIBRARY_PATH"
-        chown -R $RUN_USER:$RUN_GROUP "$LIBRARY_PATH"
-    fi
-    if [ ! -f "$LIBRARY_PATH/metadata.db" ]; then
-        cp /calibre/metadata.db "$LIBRARY_PATH"
-    fi
-    startServerCmd+=("$LIBRARY_PATH")
-done
-
 trap /calibre/scripts/shutdown SIGHUP SIGINT SIGTERM TERM
 
-"${startServerCmd[@]}"
+startCalibreCmd="/calibre/scripts/calibrestart"
+startDummyCmd="/calibre/scripts/dummy"
+$startCalibreCmd & $startDummyCmd
