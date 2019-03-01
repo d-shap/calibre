@@ -42,7 +42,7 @@ fi
 startServerCmd+=("--userdb")
 startServerCmd+=("/calibre/data/users.db")
 
-for LIBRARY in "${LIBRARIES_ARRAY[@]}"
+for LIBRARY in "${LIBRARIES_ARRAY[@]}";
 do
     LIBRARY_PATH="/calibre/data/$LIBRARY"
     if [ ! -d "$LIBRARY_PATH" ]; then
