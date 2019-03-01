@@ -1,2 +1,4 @@
 #!/bin/bash
+/calibre/scripts/calibrestop
 calibre-server --userdb /calibre/data/users.db --manage-users
+/calibre/scripts/calibrestart
