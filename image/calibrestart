@@ -11,7 +11,7 @@ IFS="$OLD_IFS"
 
 startServerCmd=(calibre-server)
 startServerCmd+=("--pidfile")
-startServerCmd+=("/calibre/pidcalibre")
+startServerCmd+=("/calibre/process.pid")
 startServerCmd+=("--shutdown-timeout")
 startServerCmd+=("5")
 startServerCmd+=("--daemonize")

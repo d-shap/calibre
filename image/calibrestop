@@ -1,5 +1,5 @@
 #!/bin/bash
-PIDFILE="/calibre/pidcalibre"
+PIDFILE="/calibre/process.pid"
 if [ -e "$PIDFILE" ];
 then
     PID=$(cat "$PIDFILE")
