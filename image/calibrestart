@@ -19,6 +19,9 @@ startServerCmd+=("--daemonize")
 startServerCmd+=("--port")
 startServerCmd+=($RUN_PORT)
 
+startServerCmd+=("--url-prefix")
+startServerCmd+=("/calibre")
+
 startServerCmd+=("--access-log")
 startServerCmd+=("/calibre/logs/access")
 startServerCmd+=("--log")
