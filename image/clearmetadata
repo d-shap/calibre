@@ -1,6 +1,7 @@
 #!/bin/bash
 if [ "$1" != "identifiers" ] && [ "$1" != "languages" ] && [ "$1" != "pubdate" ] && [ "$1" != "publisher" ] && [ "$1" != "timestamp" ];
 then
+    echo "Usage: $0 (identifiers | languages | pubdate | publisher | timestamp)"
     exit 1
 fi
 
