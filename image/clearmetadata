@@ -1,0 +1,16 @@
+#!/bin/bash
+if [ "$1" == "" ];
+then
+    exit 1
+fi
+if [ "$2" == "" ];
+then
+    exit 1
+fi
+
+if [ "$2" == "identifiers" ] || [ "$2" == "languages" ] || [ "$2" == "pubdate" ] || [ "$2" == "publisher" ] || [ "$2" == "rating" ] || [ "$2" == "timestamp" ];
+then
+    /calibre/scripts/calibrestop
+    calibredb --with-library /calibre/data/$1 list -f id | tail -n+2 | xargs -n1 calibredb --with-library /calibre/data/$1 set_metadata -f $2:
+    /calibre/scripts/calibrestart
+fi
