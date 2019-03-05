@@ -59,6 +59,7 @@ RUN         mv /tmp/startup /calibre/scripts && \
             mv /tmp/calibrestop /calibre/scripts && \
             mv /tmp/dummy /calibre/scripts && \
             mv /tmp/manageusers /calibre/scripts && \
+            mv /tmp/clearmetadata /calibre/scripts && \
             mv /tmp/backup /calibre/scripts && \
             mv /tmp/restore /calibre/scripts && \
             chmod 755 /calibre/scripts/*
