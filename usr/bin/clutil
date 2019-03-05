@@ -16,6 +16,22 @@ manageusers() {
     fi
 }
 
+clearmetadata() {
+    arguments=( "$@" )
+
+    CID=$(cat "$PIDFILE")
+    if [ "$CID" == "" ];
+    then
+        exit 1
+    fi
+
+    docker exec -it "$CID" /calibre/scripts/clearmetadata "${arguments[1]}"
+    if [ $? -ne 0 ];
+    then
+        exit 2
+    fi
+}
+
 backup() {
     arguments=( "$@" )
 
@@ -66,6 +82,9 @@ case $1 in
     manageusers)
         manageusers
         ;;
+    clearmetadata)
+        clearmetadata
+        ;;
     backup)
         backup $@
         ;;
@@ -76,6 +95,6 @@ case $1 in
         bash
         ;;
     *)
-        echo "Usage: $0 (manageusers | backup | restore | bash)"
+        echo "Usage: $0 (manageusers | clearmetadata | backup | restore | bash)"
         ;;
 esac
