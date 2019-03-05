@@ -3,20 +3,23 @@ if [ "$1" == "" ];
 then
     exit 1
 fi
-if [ "$2" == "" ];
-then
-    exit 1
-fi
 
-if [ "$2" == "identifiers" ] || [ "$2" == "languages" ] || [ "$2" == "pubdate" ] || [ "$2" == "publisher" ] || [ "$2" == "timestamp" ];
-then
-    /calibre/scripts/calibrestop
-    calibredb --with-library /calibre/data/$1 list -f id | tail -n+2 | xargs -n1 calibredb --with-library /calibre/data/$1 set_metadata -f $2:
-    /calibre/scripts/calibrestart
-fi
-if [ "$2" == "rating" ];
-then
-    /calibre/scripts/calibrestop
-    calibredb --with-library /calibre/data/$1 list -f id | tail -n+2 | xargs -n1 calibredb --with-library /calibre/data/$1 set_metadata -f $2:0
-    /calibre/scripts/calibrestart
-fi
+OLD_IFS="$IFS"
+IFS=":"
+LIBRARIES_ARRAY=($LIBRARIES)
+IFS="$OLD_IFS"
+
+/calibre/scripts/calibrestop
+for LIBRARY in "${LIBRARIES_ARRAY[@]}";
+do
+    LIBRARY_PATH="/calibre/data/$LIBRARY"
+    if [ "$1" == "identifiers" ] || [ "$1" == "languages" ] || [ "$1" == "pubdate" ] || [ "$1" == "publisher" ] || [ "$1" == "timestamp" ];
+    then
+        calibredb --with-library $LIBRARY_PATH list -f id | tail -n+2 | xargs -n1 calibredb --with-library $LIBRARY_PATH set_metadata -f $1:
+    fi
+    if [ "$1" == "rating" ];
+    then
+        calibredb --with-library $LIBRARY_PATH list -f id | tail -n+2 | xargs -n1 calibredb --with-library $LIBRARY_PATH set_metadata -f $1:0
+    fi
+done
+/calibre/scripts/calibrestart
