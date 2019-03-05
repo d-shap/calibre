@@ -10,11 +10,9 @@ LIBRARIES_ARRAY=($LIBRARIES)
 IFS="$OLD_IFS"
 
 /calibre/scripts/calibrestop
-
 for LIBRARY in "${LIBRARIES_ARRAY[@]}";
 do
     LIBRARY_PATH="/calibre/data/$LIBRARY"
     calibredb --with-library $LIBRARY_PATH list -f id | tail -n+2 | xargs -n1 calibredb --with-library $LIBRARY_PATH set_metadata -f $1:
 done
-
 /calibre/scripts/calibrestart
