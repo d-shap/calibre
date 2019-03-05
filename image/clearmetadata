@@ -1,5 +1,5 @@
 #!/bin/bash
-if [ "$1" != "identifiers" ] && [ "$1" != "languages" ] && [ "$1" != "pubdate" ] && [ "$1" != "publisher" ] && [ "$1" != "timestamp" ] && [ "$1" != "rating" ];
+if [ "$1" != "identifiers" ] && [ "$1" != "languages" ] && [ "$1" != "pubdate" ] && [ "$1" != "publisher" ] && [ "$1" != "timestamp" ];
 then
     exit 1
 fi
@@ -14,14 +14,7 @@ IFS="$OLD_IFS"
 for LIBRARY in "${LIBRARIES_ARRAY[@]}";
 do
     LIBRARY_PATH="/calibre/data/$LIBRARY"
-    if [ "$1" == "identifiers" ] || [ "$1" == "languages" ] || [ "$1" == "pubdate" ] || [ "$1" == "publisher" ] || [ "$1" == "timestamp" ];
-    then
-        calibredb --with-library $LIBRARY_PATH list -f id | tail -n+2 | xargs -n1 calibredb --with-library $LIBRARY_PATH set_metadata -f $1:
-    fi
-    if [ "$1" == "rating" ];
-    then
-        calibredb --with-library $LIBRARY_PATH list -f id | tail -n+2 | xargs -n1 calibredb --with-library $LIBRARY_PATH set_metadata -f $1:0
-    fi
+    calibredb --with-library $LIBRARY_PATH list -f id | tail -n+2 | xargs -n1 calibredb --with-library $LIBRARY_PATH set_metadata -f $1:
 done
 
 /calibre/scripts/calibrestart
