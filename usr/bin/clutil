@@ -83,7 +83,7 @@ case $1 in
         manageusers
         ;;
     clearmetadata)
-        clearmetadata
+        clearmetadata $@
         ;;
     backup)
         backup $@
