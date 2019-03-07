@@ -52,6 +52,8 @@ do
     if [ ! -f "$LIBRARY_PATH/metadata.db" ]; then
         cp /calibre/metadata.db "$LIBRARY_PATH"
     fi
+    chmod -R g-w "$LIBRARY_PATH"
+    chmod -R o-w "$LIBRARY_PATH"
     startServerCmd+=("$LIBRARY_PATH")
 done
 
