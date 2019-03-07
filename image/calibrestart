@@ -56,3 +56,10 @@ do
 done
 
 "${startServerCmd[@]}"
+
+sleep 3s
+
+if [ -e /calibre/logs/access ] || [ -e /calibre/logs/log ];
+then
+    chmod a-x /calibre/logs/*
+fi
