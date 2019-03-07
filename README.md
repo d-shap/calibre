@@ -194,5 +194,26 @@ Restart apache service:
 sudo service apache2 restart
 ```
 
+## HOW TO
+### How to clear book metadata
+```
+sudo clutil clearmetadata <column_name>
+```
+
+This command will clean the specified **&lt;column_name&gt;** for all books in all libraries
+
+The valid column names are:
+* identifiers
+* languages
+* pubdate
+* publisher
+* timestamp
+* rating
+
+### How to create cron job for backups
+```
+sudo crontab -l | { cat; echo "minute hour * * * /usr/bin/clutil backup <filename>"; echo ""; } | sudo crontab -
+```
+
 # Donation
 If you find my code useful, you can [bye me a coffee](https://www.paypal.me/dshapovalov)
