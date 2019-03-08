@@ -211,12 +211,32 @@ Start calibre service:
 sudo service calibre start
 ```
 
+### How to provide anonymous access to the libraries
+Stop calibre service:
+```
+sudo service calibre stop
+```
+
+Specify container environment variable **WITHAUTH** in **/usr/sbin/calibre** file:
+```
+docker run ... -e WITHAUTH="false" ...
+```
+
+Start calibre service:
+```
+sudo service calibre start
+```
+
+Everyone can access the libraries, but no one can make changes.
+To upload new books, or to change the book metadata, the container environment variable **WITHAUTH** should be **true**.
+After the changes are made, the container environment variable **WITHAUTH** can be changed to **false** again.
+
 ### How to clear book metadata
 ```
 sudo clutil clearmetadata <column_name>
 ```
 
-This command will clean the specified **&lt;column_name&gt;** for all books in all libraries
+This command will clean the specified **&lt;column_name&gt;** for all books in all libraries.
 
 The valid column names are:
 * identifiers
