@@ -114,7 +114,7 @@ Start calibre service:
 sudo service calibre start
 ```
 
-Create user acount:
+Create user account:
 ```
 sudo clutil manageusers
 ```
@@ -195,6 +195,22 @@ sudo service apache2 restart
 ```
 
 ## HOW TO
+### How to use multiple libraries
+Stop calibre service:
+```
+sudo service calibre stop
+```
+
+Specify libraries names (with colon as a delimiter) in **/usr/sbin/calibre** file:
+```
+docker run ... -e LIBRARIES="library-1:library-2:library-3" ...
+```
+
+Start calibre service:
+```
+sudo service calibre start
+```
+
 ### How to clear book metadata
 ```
 sudo clutil clearmetadata <column_name>
