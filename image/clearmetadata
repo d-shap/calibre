@@ -1,26 +1,33 @@
 #!/bin/bash
-if [ "$1" != "identifiers" ] && [ "$1" != "languages" ] && [ "$1" != "pubdate" ] && [ "$1" != "publisher" ] && [ "$1" != "timestamp" ] && [ "$1" != "rating" ];
+if [ "$1" == "" ];
 then
-    echo "Usage: $0 (identifiers | languages | pubdate | publisher | timestamp | rating)"
+    echo "Usage: $0 library (identifiers | languages | pubdate | publisher | timestamp | rating)"
+    exit 1
+fi
+LIBRARY_PATH="/calibre/data/$1"
+if [ ! -d "$LIBRARY_PATH" ];
+then
+    echo "Usage: $0 library (identifiers | languages | pubdate | publisher | timestamp | rating)"
+    exit 1
+fi
+if [ ! -f "$LIBRARY_PATH/metadata.db" ];
+then
+    echo "Usage: $0 library (identifiers | languages | pubdate | publisher | timestamp | rating)"
+    exit 1
+fi
+if [ "$2" != "identifiers" ] && [ "$2" != "languages" ] && [ "$2" != "pubdate" ] && [ "$2" != "publisher" ] && [ "$2" != "timestamp" ] && [ "$2" != "rating" ];
+then
+    echo "Usage: $0 library (identifiers | languages | pubdate | publisher | timestamp | rating)"
     exit 1
 fi
 
-OLD_IFS="$IFS"
-IFS=":"
-LIBRARIES_ARRAY=($LIBRARIES)
-IFS="$OLD_IFS"
-
 /calibre/scripts/calibrestop
-for LIBRARY in "${LIBRARIES_ARRAY[@]}";
-do
-    LIBRARY_PATH="/calibre/data/$LIBRARY"
-    if [ "$1" == "identifiers" ] || [ "$1" == "languages" ] || [ "$1" == "pubdate" ] || [ "$1" == "publisher" ] || [ "$1" == "timestamp" ];
-    then
-        calibredb --with-library $LIBRARY_PATH list -f id | tail -n+2 | xargs -n1 calibredb --with-library $LIBRARY_PATH set_metadata -f $1:
-    fi
-    if [ "$1" == "rating" ];
-    then
-        calibredb --with-library $LIBRARY_PATH list -f id | tail -n+2 | xargs -n1 calibredb --with-library $LIBRARY_PATH set_metadata -f $1:0
-    fi
-done
+if [ "$2" == "identifiers" ] || [ "$2" == "languages" ] || [ "$2" == "pubdate" ] || [ "$2" == "publisher" ] || [ "$2" == "timestamp" ];
+then
+    calibredb --with-library $LIBRARY_PATH list -f id | tail -n+2 | xargs -n1 calibredb --with-library $LIBRARY_PATH set_metadata -f $2:
+fi
+if [ "$2" == "rating" ];
+then
+    calibredb --with-library $LIBRARY_PATH list -f id | tail -n+2 | xargs -n1 calibredb --with-library $LIBRARY_PATH set_metadata -f $2:0
+fi
 /calibre/scripts/calibrestart
