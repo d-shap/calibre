@@ -233,10 +233,10 @@ After the changes are made, the container environment variable **WITHAUTH** can 
 
 ### How to clear book metadata
 ```
-sudo clutil clearmetadata <column_name>
+sudo clutil clearmetadata <library> <column_name>
 ```
 
-This command will clean the specified **&lt;column_name&gt;** for all books in all libraries.
+This command will clean the specified **&lt;column_name&gt;** for all books in the specified **&lt;library&gt;**.
 
 The valid column names are:
 * identifiers
@@ -246,9 +246,9 @@ The valid column names are:
 * timestamp
 * rating
 
-### How to unmask permissions
-Calibre gives 777 permit to all folders in libraries.
-Also calibre gives execute permission to log files.
+### How to unmask calibre permissions
+Calibre gives 777 permit to all folders in the libraries.
+Calibre also gives execute permission to the log files.
 To remove excessive permissions, just restart calibre service:
 ```
 sudo service calibre restart
