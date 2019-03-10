@@ -246,7 +246,7 @@ The valid column names are:
 * timestamp
 * rating
 
-### How to unmask calibre permissions
+### How to remove excessive permissions
 Calibre gives 777 permit to all folders in the libraries.
 Calibre also gives execute permission to the log files.
 To remove excessive permissions, just restart calibre service:
