@@ -246,6 +246,14 @@ The valid column names are:
 * timestamp
 * rating
 
+### How to unmask permissions
+Calibre gives 777 permit to all folders in libraries.
+Also calibre gives execute permission to log files.
+To remove excessive permissions, just restart calibre service:
+```
+sudo service calibre restart
+```
+
 ### How to create cron job for backups
 ```
 sudo crontab -l | { cat; echo "minute hour * * * /usr/bin/clutil backup <filename>"; echo ""; } | sudo crontab -
