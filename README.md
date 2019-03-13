@@ -135,6 +135,20 @@ sudo service calibre (start|stop|status|restart)
 sudo clutil manageusers
 ```
 
+### Database management
+```
+sudo clutil calibredb command [options] [arguments]
+```
+
+**calibredb** command is passed to the running docker container with **clutil** utility.
+
+If **calibredb** command requires library path to be specified, then library name (as specified in the **LIBRARIES** environment variable) should be used.
+The **clutil** utility translates library name to the library path.
+For example, to list all books in the library **&lt;library_name&gt;**, next command can be used:
+```
+sudo clutil calibredb list --library-path <library_name>
+```
+
 ### Create backup
 ```
 sudo clutil backup <filename>
