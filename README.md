@@ -263,12 +263,15 @@ The valid column names are:
 ### How to remove books
 To remove the book with id **&lt;id&gt;** from the library **&lt;library_name&gt;**, the next command can be used:
 ```
-sudo clutil calibredb --library-path <library_name> remove <id>
+sudo clutil calibredb --library-path <library_name> remove <id> --permanent
 ```
 
-Multiple book ids can be specified (with comma separator):
+Multiple book ids can be specified (with comma separator, or with range):
 ```
-sudo clutil calibredb --library-path <library_name> remove <id1>,<id2>,<id3>
+sudo clutil calibredb --library-path <library_name> remove <id1>,<id2>,<id3> --permanent
+```
+```
+sudo clutil calibredb --library-path <library_name> remove <id1>-<id3> --permanent
 ```
 
 ### How to remove excessive permissions
