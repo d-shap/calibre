@@ -27,12 +27,14 @@ RUN         apt-get update && \
 
 # Create user and group
 RUN         groupadd -g $hostgid $RUN_GROUP && \
-            useradd -u $hostuid -g $hostgid -M $RUN_USER
+            useradd -u $hostuid -g $hostgid -M $RUN_USER && \
+            usermod -d /calibre/home $RUN_USER
 
 # Create folders for calibre
 RUN         mkdir /calibre && \
             mkdir /calibre/config && \
             mkdir /calibre/data && \
+            mkdir /calibre/home && \
             mkdir /calibre/scripts && \
             mkdir /calibre/logs && \
             mkdir /calibre/backups && \
