@@ -144,9 +144,9 @@ sudo clutil calibredb command [options] [arguments]
 
 If **calibredb** command requires library path to be specified, then library name (as specified in the **LIBRARIES** environment variable) should be used.
 The **clutil** utility translates library name to the library path.
-For example, to list all books in the library **&lt;library_name&gt;**, next command can be used:
+For example, to list the specified book fields in the library **&lt;library_name&gt;**, next command can be used:
 ```
-sudo clutil calibredb list --library-path <library_name>
+sudo clutil calibredb list --library-path <library_name> -f id,authors,author_sort,title,series,series_index,publisher,tags
 ```
 
 ### Create backup
