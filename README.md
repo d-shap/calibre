@@ -260,6 +260,17 @@ The valid column names are:
 * timestamp
 * rating
 
+### How to remove books
+To remove the book with id **&lt;id&gt;** from the library **&lt;library_name&gt;**, the next command can be used:
+```
+sudo clutil calibredb --library-path <library_name> remove <id>
+```
+
+Multiple book ids can be specified (with comma separator):
+```
+sudo clutil calibredb --library-path <library_name> remove <id1>,<id2>,<id3>
+```
+
 ### How to remove excessive permissions
 Calibre gives 777 permit to all folders in the libraries.
 Calibre also gives execute permission to the log files.
