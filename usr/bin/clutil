@@ -16,6 +16,35 @@ manageusers() {
     fi
 }
 
+calibredb() {
+    arguments=( "$@" )
+    for i in "${!arguments[@]}"
+    do
+        if [ "${arguments[i]}" == "calibredb" ];
+        then
+            arguments[$i]="/calibre/scripts/${arguments[i]}"
+        fi
+        if [ "${arguments[i]}" == "--library-path" ] || [ "${arguments[i]}" == "--with-library" ];
+        then
+            next=$((i+1))
+            relativePath="${arguments[next]}"
+            arguments[$next]="/calibre/data/${relativePath}"
+        fi
+    done
+
+    CID=$(cat "$PIDFILE")
+    if [ "$CID" == "" ];
+    then
+        exit 1
+    fi
+
+    docker exec -it "$CID" "${arguments[@]}"
+    if [ $? -ne 0 ];
+    then
+        exit 2
+    fi
+}
+
 clearmetadata() {
     arguments=( "$@" )
 
@@ -82,6 +111,9 @@ case $1 in
     manageusers)
         manageusers
         ;;
+    calibredb)
+        calibredb $@
+        ;;
     clearmetadata)
         clearmetadata $@
         ;;
@@ -95,6 +127,6 @@ case $1 in
         bash
         ;;
     *)
-        echo "Usage: $0 (manageusers | clearmetadata | backup | restore | bash)"
+        echo "Usage: $0 (manageusers | calibredb | clearmetadata | backup | restore | bash)"
         ;;
 esac
