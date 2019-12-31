@@ -4,13 +4,13 @@ MAINTAINER  Dmitry Shapovalov
 ARG         hostuid=965
 ARG         hostgid=965
 
-ENV         DEBIAN_FRONTEND noninteractive
-ENV         RUN_USER calibre
-ENV         RUN_GROUP calibre
-ENV         RUN_PORT 8005
-ENV         CALIBRE_CONFIG_DIRECTORY /calibre/config
-ENV         CALIBRE_DOWNLOAD_NAME calibre
-ENV         CALIBRE_DOWNLOAD_URL https://download.calibre-ebook.com/4.7.0/calibre-4.7.0-x86_64.txz
+ENV         DEBIAN_FRONTEND=noninteractive \
+            RUN_USER=calibre \
+            RUN_GROUP=calibre \
+            RUN_PORT=8005 \
+            CALIBRE_CONFIG_DIRECTORY=/calibre/config \
+            CALIBRE_DOWNLOAD_URL="https://download.calibre-ebook.com/4.7.0/calibre-4.7.0-x86_64.txz" \
+            CALIBRE_DOWNLOAD_NAME="calibre"
 
 COPY        . /tmp
 
