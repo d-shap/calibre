@@ -171,75 +171,71 @@ Book management web server can be located with another web applications.
 For example, mercurial, bugzilla, wiki etc can be run as docker containers on the same host.
 In this case apache server can be used to redirect requests to different docker containers.
 
-Enable apache mod_proxy:
-```
-sudo a2enmod proxy proxy_ajp proxy_html proxy_http rewrite deflate headers proxy_balancer proxy_connect
-```
+1. Enable apache mod_proxy:
+    ```
+    sudo a2enmod proxy proxy_ajp proxy_html proxy_http rewrite deflate headers proxy_balancer proxy_connect
+    ```
 
-Configure proxy:
-```
-<VirtualHost *:80>
+2. Configure proxy:
+    ```
+    <VirtualHost *:80>
+        ...
+        ProxyPreserveHost On
+        <Proxy *>
+            Order allow,deny
+            Allow from all
+        </Proxy>
+        ...
+    </VirtualHost>
+    ```
 
-...
+3. Copy **./etc/apache2/sites-available/calibre.conf** to **/etc/apache2/sites-available** folder:
+    ```
+    sudo cp ./etc/apache2/sites-available/calibre.conf /etc/apache2/sites-available
+    ```
 
-ProxyPreserveHost On
-<Proxy *>
-    Order allow,deny
-    Allow from all
-</Proxy>
+4. Enable apache calibre site:
+    ```
+    sudo a2ensite calibre
+    ```
 
-...
-
-</VirtualHost>
-```
-
-Copy **./etc/apache2/sites-available/calibre.conf** to **/etc/apache2/sites-available** folder:
-```
-sudo cp ./etc/apache2/sites-available/calibre.conf /etc/apache2/sites-available
-```
-
-Enable apache calibre site:
-```
-sudo a2ensite calibre
-```
-
-Restart apache service:
-```
-sudo service apache2 restart
-```
+5. Restart apache service:
+    ```
+    sudo service apache2 restart
+    ```
 
 ## HOW TO
 ### How to use multiple libraries
-Stop calibre service:
-```
-sudo service calibre stop
-```
+1. Stop calibre service:
+    ```
+    sudo service calibre stop
+    ```
 
-Specify libraries names (with colon as a delimiter) in **/usr/sbin/calibre** file:
-```
-docker run ... -e LIBRARIES="library-1:library-2:library-3" ...
-```
+2. Specify libraries names (with colon as a delimiter) in **/usr/sbin/calibre** file:
+    ```
+    docker run ... -e LIBRARIES="library-1:library-2:library-3" ...
+    ```
 
-Start calibre service:
-```
-sudo service calibre start
-```
+3. Start calibre service:
+    ```
+    sudo service calibre start
+    ```
 
 ### How to provide anonymous access to the libraries
-Stop calibre service:
-```
-sudo service calibre stop
-```
+1. Stop calibre service:
+    ```
+    sudo service calibre stop
+    ```
 
-Specify container environment variable **WITHAUTH** in **/usr/sbin/calibre** file:
-```
-docker run ... -e WITHAUTH="false" ...
-```
+2. Specify container environment variable **WITHAUTH** in **/usr/sbin/calibre** file:
+    ```
+    docker run ... -e WITHAUTH="false" ...
+    ```
 
-Start calibre service:
-```
-sudo service calibre start
-```
+3. Start calibre service:
+    ```
+    sudo service calibre start
+    ```
 
 Everyone can access the libraries, but no one can make changes.
 To upload new books, or to change the book metadata, the container environment variable **WITHAUTH** should be **true**.
