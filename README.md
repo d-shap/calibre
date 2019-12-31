@@ -44,85 +44,85 @@ To run container next volumes should be mapped:
 5. Proceed to configuration.
 
 ### Configuration
-Create folders for calibre files:
-```
-sudo mkdir /calibre
-```
-```
-sudo mkdir /calibre/data
-```
+1. Create folders for calibre files:
+    ```
+    sudo mkdir /calibre
+    ```
+    ```
+    sudo mkdir /calibre/data
+    ```
 
-Create folder for logs:
-```
-sudo mkdir /var/log/calibre
-```
+2. Create folder for logs:
+    ```
+    sudo mkdir /var/log/calibre
+    ```
 
-Create folder for backups:
-```
-sudo mkdir /var/backups/calibre
-```
+3. Create folder for backups:
+    ```
+    sudo mkdir /var/backups/calibre
+    ```
 
-Grant permit to all folders:
-```
-sudo chown -R calibre:calibre /calibre
-```
-```
-sudo chown calibre:calibre /var/log/calibre
-```
-```
-sudo chown calibre:calibre /var/backups/calibre
-```
+4. Grant permit to all folders:
+    ```
+    sudo chown -R calibre:calibre /calibre
+    ```
+    ```
+    sudo chown calibre:calibre /var/log/calibre
+    ```
+    ```
+    sudo chown calibre:calibre /var/backups/calibre
+    ```
 
-Copy **etc/init.d/calibre** to **/etc/init.d** folder:
-```
-sudo cp ./etc/init.d/calibre /etc/init.d
-```
+5. Copy **etc/init.d/calibre** to **/etc/init.d** folder:
+    ```
+    sudo cp ./etc/init.d/calibre /etc/init.d
+    ```
 
-Copy **usr/sbin/calibre** to **/usr/sbin** folder:
-```
-sudo cp ./usr/sbin/calibre /usr/sbin
-```
+6. Copy **usr/sbin/calibre** to **/usr/sbin** folder:
+    ```
+    sudo cp ./usr/sbin/calibre /usr/sbin
+    ```
 
-Copy **usr/bin/clutil** to **/usr/bin** folder:
-```
-sudo cp ./usr/bin/clutil /usr/bin
-```
+7. Copy **usr/bin/clutil** to **/usr/bin** folder:
+    ```
+    sudo cp ./usr/bin/clutil /usr/bin
+    ```
 
-Make all files executable:
-```
-sudo chmod a+x /etc/init.d/calibre
-```
-```
-sudo chmod a+x /usr/sbin/calibre
-```
-```
-sudo chmod a+x /usr/bin/clutil
-```
+8. Make all files executable:
+    ```
+    sudo chmod a+x /etc/init.d/calibre
+    ```
+    ```
+    sudo chmod a+x /usr/sbin/calibre
+    ```
+    ```
+    sudo chmod a+x /usr/bin/clutil
+    ```
 
-Register service:
-```
-sudo update-rc.d calibre defaults
-```
+9. Register service:
+    ```
+    sudo update-rc.d calibre defaults
+    ```
 
-Specify library name in **/usr/sbin/calibre** file:
-```
-docker run ... -e LIBRARIES="<library_name>" ...
-```
+10. Specify library name in **/usr/sbin/calibre** file:
+    ```
+    docker run ... -e LIBRARIES="<library_name>" ...
+    ```
 
-Start calibre service:
-```
-sudo service calibre start
-```
+11. Start calibre service:
+    ```
+    sudo service calibre start
+    ```
 
-Create user account:
-```
-sudo clutil manageusers
-```
+12. Create user account:
+    ```
+    sudo clutil manageusers
+    ```
 
-Restart calibre service:
-```
-sudo service calibre restart
-```
+13. Restart calibre service:
+    ```
+    sudo service calibre restart
+    ```
 
 ## Management
 ### Service management
