@@ -11,37 +11,37 @@ To run container next volumes should be mapped:
 
 ## Installation
 ### Installation from docker image
-Pull docker image.
+1. Pull docker image.
 
-Create user and group to own calibre files and to run docker container:
-```
-sudo groupadd -g 965 calibre
-```
-```
-useradd -u 965 -g 965 -M calibre
-```
+2. Create user and group to own calibre files and to run docker container:
+    ```
+    sudo groupadd -g 965 calibre
+    ```
+    ```
+    useradd -u 965 -g 965 -M calibre
+    ```
 
-Proceed to configuration.
+3. Proceed to configuration.
 
 ### Installation from source
-Pull project sources from version control system.
+1. Pull project sources from version control system.
 
-Create user and group to own calibre files and to run docker container:
-```
-sudo useradd -r calibre
-```
+2. Create user and group to own calibre files and to run docker container:
+    ```
+    sudo useradd -r calibre
+    ```
 
-Make **build** executable:
-```
-sudo chmod u+x ./build
-```
+3. Make **build** executable:
+    ```
+    sudo chmod u+x ./build
+    ```
 
-Execute **build**:
-```
-sudo ./build calibre
-```
+4. Execute **build**:
+    ```
+    sudo ./build calibre
+    ```
 
-Proceed to configuration.
+5. Proceed to configuration.
 
 ### Configuration
 Create folders for calibre files:
