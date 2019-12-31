@@ -10,7 +10,7 @@ ENV         RUN_GROUP calibre
 ENV         RUN_PORT 8005
 ENV         CALIBRE_CONFIG_DIRECTORY /calibre/config
 ENV         CALIBRE_DOWNLOAD_NAME calibre
-ENV         CALIBRE_DOWNLOAD_URL https://download.calibre-ebook.com/3.39.1/calibre-3.39.1-x86_64.txz
+ENV         CALIBRE_DOWNLOAD_URL https://download.calibre-ebook.com/4.7.0/calibre-4.7.0-x86_64.txz
 
 COPY        . /tmp
 
