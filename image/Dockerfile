@@ -34,7 +34,7 @@ RUN         groupadd -g $hostgid $RUN_GROUP && \
             useradd -u $hostuid -g $hostgid -M $RUN_USER && \
             usermod -d /calibre/home $RUN_USER
 
-# Create folders for calibre
+# Configure application folders
 RUN         mkdir /calibre && \
             mkdir /calibre/config && \
             mkdir /calibre/data && \
@@ -44,7 +44,7 @@ RUN         mkdir /calibre && \
             mkdir /calibre/backups && \
             chown -R $RUN_USER:$RUN_GROUP /calibre
 
-# Configure calibre
+# Configure app
 RUN         cd /tmp && \
             mkdir /opt/calibre && \
             wget -O $CALIBRE_DOWNLOAD_NAME.tar.gz $CALIBRE_DOWNLOAD_URL && \
