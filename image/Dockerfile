@@ -19,12 +19,14 @@ RUN         apt-get update && \
             apt-get install --assume-yes \
                 apt-utils \
                 build-essential \
-                gcc \
-                python3 \
                 software-properties-common \
                 unzip \
                 vim \
-                wget \
+                wget && \
+            apt-get update && \
+            apt-get install --assume-yes \
+                gcc \
+                python3 \
                 xdg-utils \
                 xz-utils && \
             apt-get clean
