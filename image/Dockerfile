@@ -14,11 +14,15 @@ ENV         DEBIAN_FRONTEND=noninteractive \
 
 COPY        . /tmp
 
-# Install packages
+# Install common packages and configure environment
 RUN         apt-get update && \
             apt-get install --assume-yes \
+                apt-utils \
+                build-essential \
                 gcc \
                 python3 \
+                software-properties-common \
+                unzip \
                 vim \
                 wget \
                 xdg-utils \
