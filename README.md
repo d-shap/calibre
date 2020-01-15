@@ -7,7 +7,7 @@ This user owns calibre process and owns calibre files.
 To run container next volumes should be mapped:
 * folder for calibre files
 * log folder
-* backup folder
+* backups folder
 
 ## Installation
 ### Installation from docker image
