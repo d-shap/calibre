@@ -1,4 +1,4 @@
-# Book management web server
+# Calibre web server
 Docker image for book management web server.
 
 Container runs as non-root user.
@@ -167,7 +167,7 @@ sudo clutil bash
 ```
 
 ## Apache mod_proxy configuration
-Book management web server can be located with another web applications.
+Calibre web server can be located with another web applications.
 For example, mercurial, bugzilla, wiki etc can be run as docker containers on the same host.
 In this case apache server can be used to redirect requests to different docker containers.
 
