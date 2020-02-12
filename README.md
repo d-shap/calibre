@@ -12,7 +12,6 @@ To run container next volumes should be mapped:
 ## Installation
 ### Installation from docker image
 1. Pull docker image.
-
 2. Create user and group to own calibre files and to run docker container:
     ```
     sudo groupadd -g 965 calibre
@@ -20,27 +19,22 @@ To run container next volumes should be mapped:
     ```
     useradd -u 965 -g 965 -M calibre
     ```
-
 3. Proceed to configuration.
 
 ### Installation from source
 1. Pull project sources from version control system.
-
 2. Create user and group to own calibre files and to run docker container:
     ```
     sudo useradd -r calibre
     ```
-
 3. Make **build** executable:
     ```
     sudo chmod u+x ./build
     ```
-
 4. Execute **build**:
     ```
     sudo ./build calibre
     ```
-
 5. Proceed to configuration.
 
 ### Configuration
@@ -51,17 +45,14 @@ To run container next volumes should be mapped:
     ```
     sudo mkdir /calibre/data
     ```
-
 2. Create folder for logs:
     ```
     sudo mkdir /var/log/calibre
     ```
-
 3. Create folder for backups:
     ```
     sudo mkdir /var/backups/calibre
     ```
-
 4. Grant permit to all folders:
     ```
     sudo chown -R calibre:calibre /calibre
@@ -72,22 +63,18 @@ To run container next volumes should be mapped:
     ```
     sudo chown calibre:calibre /var/backups/calibre
     ```
-
 5. Copy **etc/init.d/calibre** to **/etc/init.d** folder:
     ```
     sudo cp ./etc/init.d/calibre /etc/init.d
     ```
-
 6. Copy **usr/sbin/calibre** to **/usr/sbin** folder:
     ```
     sudo cp ./usr/sbin/calibre /usr/sbin
     ```
-
 7. Copy **usr/bin/clutil** to **/usr/bin** folder:
     ```
     sudo cp ./usr/bin/clutil /usr/bin
     ```
-
 8. Make all files executable:
     ```
     sudo chmod a+x /etc/init.d/calibre
@@ -98,27 +85,22 @@ To run container next volumes should be mapped:
     ```
     sudo chmod a+x /usr/bin/clutil
     ```
-
 9. Register service:
     ```
     sudo update-rc.d calibre defaults
     ```
-
 10. Specify library name in **/usr/sbin/calibre** file:
     ```
     docker run ... -e LIBRARIES="<library_name>" ...
     ```
-
 11. Start calibre service:
     ```
     sudo service calibre start
     ```
-
 12. Create user account:
     ```
     sudo clutil manageusers
     ```
-
 13. Restart calibre service:
     ```
     sudo service calibre restart
@@ -175,7 +157,6 @@ In this case apache server can be used to redirect requests to different docker 
     ```
     sudo a2enmod deflate headers proxy proxy_ajp proxy_balancer proxy_connect proxy_html proxy_http rewrite
     ```
-
 2. Configure proxy:
     ```
     <VirtualHost *:80>
@@ -188,17 +169,14 @@ In this case apache server can be used to redirect requests to different docker 
         ...
     </VirtualHost>
     ```
-
 3. Copy **./etc/apache2/sites-available/calibre.conf** to **/etc/apache2/sites-available** folder:
     ```
     sudo cp ./etc/apache2/sites-available/calibre.conf /etc/apache2/sites-available
     ```
-
 4. Enable apache sites:
     ```
     sudo a2ensite calibre
     ```
-
 5. Restart apache service:
     ```
     sudo service apache2 restart
@@ -210,12 +188,10 @@ In this case apache server can be used to redirect requests to different docker 
     ```
     sudo service calibre stop
     ```
-
 2. Specify libraries names (with colon as a delimiter) in **/usr/sbin/calibre** file:
     ```
     docker run ... -e LIBRARIES="library-1:library-2:library-3" ...
     ```
-
 3. Start calibre service:
     ```
     sudo service calibre start
@@ -226,12 +202,10 @@ In this case apache server can be used to redirect requests to different docker 
     ```
     sudo service calibre stop
     ```
-
 2. Specify container environment variable **WITHAUTH** in **/usr/sbin/calibre** file:
     ```
     docker run ... -e WITHAUTH="false" ...
     ```
-
 3. Start calibre service:
     ```
     sudo service calibre start
