@@ -9,7 +9,7 @@ ENV         DEBIAN_FRONTEND=noninteractive \
             RUN_GROUP=calibre \
             RUN_PORT=8005 \
             CALIBRE_CONFIG_DIRECTORY=/calibre/config \
-            CALIBRE_DOWNLOAD_URL="https://download.calibre-ebook.com/4.7.0/calibre-4.7.0-x86_64.txz" \
+            CALIBRE_DOWNLOAD_URL="https://download.calibre-ebook.com/4.23.0/calibre-4.23.0-x86_64.txz" \
             CALIBRE_DOWNLOAD_NAME="calibre"
 
 COPY        . /tmp
