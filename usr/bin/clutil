@@ -9,7 +9,7 @@ manageusers() {
         exit 1
     fi
 
-    docker exec -it "$CID" /calibre/scripts/manageusers
+    docker exec -it "$CID" /calibre/scripts/utilManageUsers
     if [ $? -ne 0 ];
     then
         exit 2
@@ -22,7 +22,7 @@ calibredb() {
     do
         if [ "${arguments[i]}" == "calibredb" ];
         then
-            arguments[$i]="/calibre/scripts/${arguments[i]}"
+            arguments[$i]="/calibre/scripts/utilCalibreDb"
         fi
         if [ "${arguments[i]}" == "--library-path" ] || [ "${arguments[i]}" == "--with-library" ];
         then
@@ -54,7 +54,7 @@ clearmetadata() {
         exit 1
     fi
 
-    docker exec -it "$CID" /calibre/scripts/clearmetadata "${arguments[1]}" "${arguments[2]}"
+    docker exec -it "$CID" /calibre/scripts/utilClearMetaData "${arguments[1]}" "${arguments[2]}"
     if [ $? -ne 0 ];
     then
         exit 2
@@ -70,7 +70,7 @@ backup() {
         exit 1
     fi
 
-    docker exec "$CID" /calibre/scripts/backup "${arguments[1]}"
+    docker exec "$CID" /calibre/scripts/utilBackup "${arguments[1]}"
     if [ $? -ne 0 ];
     then
         exit 2
@@ -86,7 +86,7 @@ restore() {
         exit 1
     fi
 
-    docker exec "$CID" /calibre/scripts/restore "${arguments[1]}"
+    docker exec "$CID" /calibre/scripts/utilRestore "${arguments[1]}"
     if [ $? -ne 0 ];
     then
         exit 2
