@@ -3,8 +3,14 @@ if [ "$1" != "" ];
 then
     TEMPTILE="/calibre/backups/tmp_$1.tar.gz"
     FILE="/calibre/backups/$1.tar.gz"
+    source /calibre/scripts/containerConfig
+
+    $stopWebCmd
 
     cd /calibre
     tar -czf $TEMPTILE data
+    rm -rf $FILE
     mv $TEMPTILE $FILE
+
+    $startWebCmd
 fi

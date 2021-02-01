@@ -2,10 +2,15 @@
 if [ "$1" != "" ];
 then
     FILE="/calibre/backups/$1.tar.gz"
+    source /calibre/scripts/containerConfig
 
     if [ -e "$FILE" ];
     then
+        $stopWebCmd
+
         cd /calibre
         tar -xzf $FILE data
+
+        $startWebCmd
     fi
 fi
