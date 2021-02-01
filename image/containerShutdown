@@ -1,0 +1,3 @@
+#!/bin/bash
+source /calibre/scripts/containerConfig
+$stopWebCmd && eval $stopDummyCmd
