@@ -1,6 +1,0 @@
-#!/bin/bash
-trap /calibre/scripts/shutdown SIGHUP SIGINT SIGTERM TERM
-
-startCalibreCmd="/calibre/scripts/calibrestart"
-startDummyCmd="/calibre/scripts/dummy"
-$startCalibreCmd & $startDummyCmd
