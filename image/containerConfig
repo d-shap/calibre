@@ -1,0 +1,6 @@
+#!/bin/bash
+startWebCmd="/calibre/scripts/webStartup"
+stopWebCmd="/calibre/scripts/webShutdown"
+startDummyCmd="/calibre/scripts/containerDummy"
+waitDummyCmd="ps axf | grep containerDummy | grep -v grep | awk '{print \"wait \" \$1}' | sh"
+stopDummyCmd="ps axf | grep containerDummy | grep -v grep | awk '{print \"kill -9 \" \$1}' | sh"
