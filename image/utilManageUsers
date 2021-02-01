@@ -1,4 +1,8 @@
 #!/bin/bash
-/calibre/scripts/calibrestop
+source /calibre/scripts/containerConfig
+
+$stopWebCmd
+
 calibre-server --userdb /calibre/data/users.db --manage-users
-/calibre/scripts/calibrestart
+
+$startWebCmd
