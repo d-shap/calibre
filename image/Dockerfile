@@ -19,6 +19,9 @@ RUN         apt-get update && \
             apt-get install --assume-yes \
                 apt-utils \
                 build-essential \
+                cron \
+                net-tools \
+                procps \
                 software-properties-common \
                 unzip \
                 vim \
@@ -61,20 +64,21 @@ RUN         cd /tmp && \
             chown $RUN_USER:$RUN_GROUP /calibre/metadata.db
 
 # Configure helper scripts
-RUN         mv /tmp/startup /calibre/scripts && \
-            mv /tmp/shutdown /calibre/scripts && \
-            mv /tmp/calibrestart /calibre/scripts && \
-            mv /tmp/calibrestop /calibre/scripts && \
-            mv /tmp/dummy /calibre/scripts && \
-            mv /tmp/manageusers /calibre/scripts && \
-            mv /tmp/calibredb /calibre/scripts && \
-            mv /tmp/clearmetadata /calibre/scripts && \
-            mv /tmp/backup /calibre/scripts && \
-            mv /tmp/restore /calibre/scripts && \
+RUN         mv /tmp/containerConfig /calibre/scripts && \
+            mv /tmp/containerDummy /calibre/scripts && \
+            mv /tmp/containerStartup /calibre/scripts && \
+            mv /tmp/containerShutdown /calibre/scripts && \
+            mv /tmp/webStartup /calibre/scripts && \
+            mv /tmp/webShutdown /calibre/scripts && \
+            mv /tmp/utilManageUsers /calibre/scripts && \
+            mv /tmp/utilCalibreDb /calibre/scripts && \
+            mv /tmp/utilClearMetaData /calibre/scripts && \
+            mv /tmp/utilBackup /calibre/scripts && \
+            mv /tmp/utilRestore /calibre/scripts && \
             chmod 755 /calibre/scripts/*
 
 USER        $RUN_USER
 
 EXPOSE      $RUN_PORT
 
-ENTRYPOINT  ["/calibre/scripts/startup"]
+ENTRYPOINT  ["/calibre/scripts/containerStartup"]
