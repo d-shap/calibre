@@ -1,5 +1,8 @@
 #!/bin/bash
-source /bugzilla/scripts/containerConfig
+source /calibre/scripts/containerConfig
+
 $stopWebCmd
+
 calibredb $@
+
 $startWebCmd
