@@ -9,7 +9,7 @@ ENV         DEBIAN_FRONTEND=noninteractive \
             RUN_GROUP=calibre \
             RUN_PORT=8005 \
             CALIBRE_CONFIG_DIRECTORY=/calibre/config \
-            CALIBRE_DOWNLOAD_URL="https://download.calibre-ebook.com/4.23.0/calibre-4.23.0-x86_64.txz" \
+            CALIBRE_DOWNLOAD_URL="https://download.calibre-ebook.com/5.10.1/calibre-5.10.1-x86_64.txz" \
             CALIBRE_DOWNLOAD_NAME="calibre"
 
 COPY        . /tmp
@@ -23,7 +23,6 @@ RUN         apt-get update && \
                 net-tools \
                 procps \
                 software-properties-common \
-                unzip \
                 vim \
                 wget && \
             apt-get update && \
