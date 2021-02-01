@@ -21,7 +21,10 @@ then
     exit 1
 fi
 
-/calibre/scripts/calibrestop
+source /calibre/scripts/containerConfig
+
+$stopWebCmd
+
 if [ "$2" == "identifiers" ] || [ "$2" == "languages" ] || [ "$2" == "pubdate" ] || [ "$2" == "publisher" ] || [ "$2" == "timestamp" ];
 then
     calibredb --with-library $LIBRARY_PATH list -f id | tail -n+2 | xargs -n 1 -x calibredb --with-library $LIBRARY_PATH set_metadata -f $2:
@@ -30,4 +33,5 @@ if [ "$2" == "rating" ];
 then
     calibredb --with-library $LIBRARY_PATH list -f id | tail -n+2 | xargs -n 1 -x calibredb --with-library $LIBRARY_PATH set_metadata -f $2:0
 fi
-/calibre/scripts/calibrestart
+
+$startWebCmd
