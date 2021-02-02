@@ -32,8 +32,12 @@ startServerCmd+=("--max-log-size")
 startServerCmd+=("10")
 
 startServerCmd+=("--disable-local-write")
+startServerCmd+=("--disable-log-not-found")
 startServerCmd+=("--disable-use-bonjour")
 startServerCmd+=("--disable-use-sendfile")
+
+startServerCmd+=("--num-per-page")
+startServerCmd+=("20")
 
 if [ "$WITHAUTH" == "true" ];
 then
