@@ -16,6 +16,8 @@ startServerCmd+=("--shutdown-timeout")
 startServerCmd+=("5")
 startServerCmd+=("--daemonize")
 
+startServerCmd+=("--listen-on")
+startServerCmd+=("::")
 startServerCmd+=("--port")
 startServerCmd+=($RUN_PORT)
 
@@ -36,6 +38,8 @@ startServerCmd+=("--disable-use-sendfile")
 if [ "$WITHAUTH" == "true" ];
 then
     startServerCmd+=("--enable-auth")
+    startServerCmd+=("--auth-mode")
+    startServerCmd+=("basic")
 else
     startServerCmd+=("--disable-auth")
 fi
