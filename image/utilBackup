@@ -1,16 +1,16 @@
 #!/bin/bash
 if [ "$1" != "" ];
 then
-    TEMPTILE="/calibre/backups/tmp_$1.tar.gz"
+    TEMPFILE="/calibre/backups/tmp_$1.tar.gz"
     FILE="/calibre/backups/$1.tar.gz"
     source /calibre/scripts/containerConfig
 
     $stopWebCmd
 
     cd /calibre
-    tar -czf $TEMPTILE data
+    tar -czf $TEMPFILE data
     rm -rf $FILE
-    mv $TEMPTILE $FILE
+    mv $TEMPFILE $FILE
 
     $startWebCmd
 fi
