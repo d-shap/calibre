@@ -37,7 +37,7 @@ startServerCmd+=("--disable-use-bonjour")
 startServerCmd+=("--disable-use-sendfile")
 
 startServerCmd+=("--num-per-page")
-startServerCmd+=("20")
+startServerCmd+=("50")
 
 if [ "$WITHAUTH" == "true" ];
 then
