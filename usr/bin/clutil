@@ -127,6 +127,13 @@ case $1 in
         bash
         ;;
     *)
-        echo "Usage: $0 (manageusers | calibredb | clearmetadata | backup | restore | bash)"
+        echo "Usage: $0 <command>"
+        echo "Available commands:"
+        echo " * manageusers"
+        echo " * calibredb <command> [options] [arguments]"
+        echo " * clearmetadata <library> <column_name>"
+        echo " * backup <filename>"
+        echo " * restore <filename>"
+        echo " * bash"
         ;;
 esac
