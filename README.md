@@ -256,6 +256,3 @@ sudo service calibre restart
 ```
 sudo crontab -l | { cat; echo "minute hour * * * /usr/bin/clutil backup <filename>"; echo ""; } | sudo crontab -
 ```
-
-# Donation
-If you find my code useful, you can [bye me a coffee](https://www.paypal.me/dshapovalov)
